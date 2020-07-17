@@ -13,9 +13,6 @@
 ActiveRecord::Schema.define(version: 2020_07_16_230513) do
 
   create_table "artworks", force: :cascade do |t|
-    t.string "title"
-    t.string "artist"
-    t.integer "year_published"
     t.integer "museum_id"
     t.integer "user_id"
     t.datetime "created_at", null: false

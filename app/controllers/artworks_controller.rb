@@ -1,16 +1,16 @@
 class ArtworksController < ApplicationController
 
     def index 
-        @artworks = Artwork.all
+        
     end 
 
 
     def new
-       
+        
     end 
 
     def create
- 
+      
     end 
 
 
@@ -35,10 +35,10 @@ class ArtworksController < ApplicationController
     private 
     
     def artwork_params
-        params.require(:playlist).permit(
+        params.require(:artwork).permit(
             :title,
             :artist,
-            :year_published,
+            :year_published
             :museum_id,
             :user_id
         )
