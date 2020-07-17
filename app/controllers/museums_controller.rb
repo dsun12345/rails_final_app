@@ -1,4 +1,5 @@
 class MuseumsController < ApplicationController
+    before_action :verify_user_is_authenticated
 
     def index 
         @museums = Museum.all

@@ -1,4 +1,5 @@
 class ArtworksController < ApplicationController
+    before_action :verify_user_is_authenticated
 
     def index 
         @artworks = Artwork.all
@@ -7,14 +8,16 @@ class ArtworksController < ApplicationController
 
     def new
         @artwork = Artwork.new
+        @museum = Museum.find_by(id: params[:museum_id])
+
     end 
 
     def create
         @artwork = Artwork.new(artwork_params)
         if @artwork.save
-            redirect_to artwork_path(@artwork)
+            redirect_to museum_artworks_path(@artwork)
         else
-            render :new
+            redirect_to new_museum_artwork_path
         end 
     end 
 

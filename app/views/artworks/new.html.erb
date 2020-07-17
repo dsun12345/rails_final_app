@@ -1,4 +1,4 @@
-<%= form_for @artwork do |f| %>
+<%= form_for [@museum, @artwork] do |f| %>
 
 <%= render partial: "/partials/errors", locals: {obj: @artwork} %>
 
@@ -10,6 +10,6 @@
 
     <%= f.collection_select(:museum_id, Museum.all, :id, :name) %>
 
-    <%= f.submit "Create Museum!!!!" %>
+    <%= f.submit "Create Artwork!!!!" %>
 
 <% end %>
