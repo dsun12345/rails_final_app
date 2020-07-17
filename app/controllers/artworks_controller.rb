@@ -1,18 +1,18 @@
 class ArtworksController < ApplicationController
 
     def index 
-        @museums = Museum.all
+        @artworks = Artwork.all
     end 
 
 
     def new
-        @museum = Museum.new
+        @artwork = Artwork.new
     end 
 
     def create
-        @museum = Museum.new(museum_params)
-        if @museum.save
-            redirect_to museum_path(@museum)
+        @artwork = Artwork.new(artwork_params)
+        if @artwork.save
+            redirect_to artwork_path(@artwork)
         else
             render :new
         end 
@@ -20,41 +20,41 @@ class ArtworksController < ApplicationController
 
 
     def show 
-        @museum = Museum.find_by(id: params[:id])
-        if @museum
+        @artwork = Artwork.find_by(id: params[:id])
+        if @artwork
             render :show
         else
-            redirect_to museums_path
+            redirect_to artworks_path
         end 
     end 
 
     def edit
-        @museum = Museum.find_by(id: params[:id])
-        if @museum
+        @artwork = Artwork.find_by(id: params[:id])
+        if @artwork
             render :edit
         else
-            redirect_to museums_path
+            redirect_to artworks_path
         end 
     end 
 
     def update 
-        @museum = Museum.find_by(id: params[:id])
-        if @museum
-            @museum.update(museum_params)
-            redirect_to museum_path(@museum)
+        @artwork = Artwork.find_by(id: params[:id])
+        if @artwork
+            @artwork.update(artwork_params)
+            redirect_to artwork_path(@artwork)
         else
-            redirect_to museum_path(@museum)
+            redirect_to artwork_path(@artwork)
         end 
     end 
     
 
     def destroy
-        @museum = Museum.find_by(id: params[:id])
-        if @museum
-            @museum.destroy
-            redirect_to museums_path
+        @artwork = Artwork.find_by(id: params[:id])
+        if @artwork
+            @artwork.destroy
+            redirect_to artworks_path
         else
-            redirect_to museum_path(@museum)
+            redirect_to artwork_path(@artwork)
         end
     end 
 
