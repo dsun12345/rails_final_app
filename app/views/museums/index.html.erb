@@ -1,5 +1,7 @@
 <% @museums.each do |museum| %>
     <h1>Museum: <%= museum.name %></h1> 
     <p>Location: <%= museum.location %></p>
-    <p><%= link_to "Go to this Museum", museum_artworks_path(museum) %>
+    <p><%= link_to "Go to this Museum", museum_path(museum) %></p>
 <% end %>
+
+<p> <%= link_to "Add Another Museum", new_museum_path %></p>

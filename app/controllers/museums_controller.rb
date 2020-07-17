@@ -2,7 +2,7 @@ class MuseumsController < ApplicationController
     before_action :verify_user_is_authenticated
 
     def index 
-        @museums = Museum.all
+        @museums = current_user.museums
     end 
 
 
@@ -18,7 +18,6 @@ class MuseumsController < ApplicationController
             render :new
         end 
     end 
-
 
     def show 
         @museum = Museum.find_by(id: params[:id])

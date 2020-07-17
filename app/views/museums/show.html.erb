@@ -1,6 +1,18 @@
 <h1>Welcome to <%= @museum.name %></h1>
 
-<h3>Located in <%= @museum.location %></h3>
+<h2>Located in <%= @museum.location %></h2>
 
-<%= link_to "Add Artworks to this Museum!", new_museum_artwork_path(@museum) %>
-<%= button_to "Delete Museum :(", @museum, method: :delete %>
+<h3>Artworks Currently In Museum:</h3> 
+<% if @museum.artworks.empty? %>
+    <p> There are currently no Artworks in this Museum </p>
+<% else %>
+<% @museum.artworks.each do |artwork| %>
+    <p>Name: <%=artwork.title %>, <%= link_to "more info", museum_artwork_path(@museum, artwork) %></p> 
+<% end %>
+<% end %>
+
+<p><%= link_to "Add Artworks to this Museum!", new_museum_artwork_path(@museum) %> </p>
+
+<p><%= link_to "Go back to List of Museums", museums_path%></p>
+
+<p><%= button_to "Delete This Museum", @museum, method: :delete %></p>

@@ -1,5 +1,9 @@
-The Piece of Art being Portrayed: <%= @artwork.title %>
+<h1>The Piece of Art being Portrayed: <%= @artwork.title %></h1>
 
-The Artist: <%= @artwork.artist %>
+<h3>The Artist: <%= @artwork.artist %></h3>
 
-<%= button_to "Delete Museum :(", @artwork, method: :delete %>
+<p><%= link_to "Edit the Piece of Art", edit_museum_artwork_path(@museum, @artwork) %></p>
+<p><%= link_to "Go back to Museum", museum_path(@museum) %></p>
+<%= button_to "Delete the Piece of Art", museum_artwork_path(@museum, @artwork), method: :delete %>
+
+
