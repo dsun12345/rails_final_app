@@ -1,5 +1,6 @@
 <% @artworks.each do |artwork| %>
     <h1>Artwork Title: <%= artwork.title %></h1>
-    <p>Artist: <%= artwork.artist %></p>
+    <p>Artist: <%= artwork.artist %></p>    
 <% end %>
+<%= button_to "Delete Museum :(", @artwork.id, method: :delete %>
 
