@@ -64,8 +64,7 @@ class ArtworksController < ApplicationController
         params.require(:artwork).permit(
             :title,
             :artist,
-            :museum_id,
-            :user_id
+            :museum_id
         )
     end 
 

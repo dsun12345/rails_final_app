@@ -1,5 +1,7 @@
 <%= form_for @artwork do |f| %>
 
+<%= render partial: "/partials/errors", locals: {obj: @artwork} %>
+
     <%= f.label :title %>
     <%= f.text_field :title %>
 
