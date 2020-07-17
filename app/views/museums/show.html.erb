@@ -1,5 +1,6 @@
-Welcome to <%= @museum.name %>
+<h1>Welcome to <%= @museum.name %></h1>
 
-Located in <%= @museum.location %>
+<h3>Located in <%= @museum.location %></h3>
 
+<%= link_to "Add Artworks to this Museum!", new_museum_artwork_path(@museum) %>
 <%= button_to "Delete Museum :(", @museum, method: :delete %>

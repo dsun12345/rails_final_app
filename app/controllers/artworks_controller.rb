@@ -2,18 +2,18 @@ class ArtworksController < ApplicationController
     before_action :verify_user_is_authenticated
 
     def index 
-        @artworks = Artwork.all
+        @artworks = Artwork.all.where(museum_id: params[:museum_id])
     end 
 
 
     def new
-        @artwork = Artwork.new
         @museum = Museum.find_by(id: params[:museum_id])
-
+        @artwork = Artwork.new 
     end 
 
     def create
         @artwork = Artwork.new(artwork_params)
+        @artwork.user_id = current_user.id
         if @artwork.save
             redirect_to museum_artworks_path(@artwork)
         else
