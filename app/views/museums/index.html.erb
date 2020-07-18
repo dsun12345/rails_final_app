@@ -1,4 +1,4 @@
-<% @museums.each do |museum| %>
+<% @museums.uniq.each do |museum| %>
     <h1>Museum: <%= museum.name %></h1> 
     <p>Location: <%= museum.location %></p>
     <p><%= link_to "Go to this Museum", museum_path(museum) %></p>

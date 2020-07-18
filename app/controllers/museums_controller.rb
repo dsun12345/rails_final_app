@@ -3,6 +3,7 @@ class MuseumsController < ApplicationController
 
     def index 
         @museums = current_user.museums
+        
     end 
 
 
