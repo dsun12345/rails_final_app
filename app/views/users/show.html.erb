@@ -1,8 +1,10 @@
-<h1>List of Museums!</h1>
-
-<% @user.museums.uniq.each do |museum| %>
-    <h2><%= museum.name %> <%= link_to "more info", museum_path(museum)%></h2>
-    <p><%= link_to "Click to View Artworks", museum_artworks_path(museum)%></p>
+<% if @user.museums.empty? %>
+    <h1>There are no Museums Associated to You </h1>
+<% else %>
+    <h1>List of Museums!</h1>
+    <% @user.museums.uniq.each do |museum| %>
+        <h2><%= museum.name %> <%= link_to "more info", museum_path(museum)%></h2>
+        <p><%= link_to "Click to View Artworks", museum_artworks_path(museum)%></p>
+    <% end %>
 <% end %>
-
 <%= link_to "Add a Museum to Store the Artwork!!", new_museum_path %>

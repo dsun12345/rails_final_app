@@ -1,7 +1,10 @@
-<% @museums.uniq.each do |museum| %>
-    <h1>Museum: <%= museum.name %></h1> 
-    <p>Location: <%= museum.location %></p>
-    <p><%= link_to "Go to this Museum", museum_path(museum) %></p>
+<% if @museums.empty? %>
+    <h1>There are currently no Museums associated with User</h1>
+<% else %>
+    <% @museums.uniq.each do |museum| %>
+        <h1>Museum: <%= museum.name %></h1> 
+        <p>Location: <%= museum.location %></p>
+        <p><%= link_to "Go to this Museum", museum_path(museum) %></p>
+    <% end %>
 <% end %>
-
 <p> <%= link_to "Add Another Museum", new_museum_path %></p>
