@@ -2,7 +2,6 @@ class ArtworksController < ApplicationController
     before_action :verify_user_is_authenticated
 
     def index 
-        
         @museum = Museum.find_by(id: params[:museum_id])
         @artworks = Artwork.all.where(museum_id: params[:museum_id])
     end 

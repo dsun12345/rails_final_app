@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
     validates :name, presence: true
     validates :email, email: true 
     validates :email, uniqueness: true
-    validates :password, length: { in: 6..16 }
+    validates :password, presence: true
 
 
     has_many :artworks
