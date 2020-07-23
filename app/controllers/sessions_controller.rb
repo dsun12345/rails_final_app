@@ -4,23 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-      if auth_hash = request.env["omniauth.auth"]
-        
-        oauth_email = request.env["omniauth.auth"]["info"]["email"]
-        oauth_name = request.env["omniauth.auth"]["info"]["name"]
-        if @user = User.find_by(:email => oauth_email)
-          session[:user_id] = @user.id
-          redirect_to user_path(@user)
-        else 
-          @user = User.new(:name => oauth_name, :email => oauth_email, :password => SecureRandom.hex)
-          if @user.save
-            session[:user_id] = @user.id
-            redirect_to user_path(@user)
-          else   
-            raise.user.errors.messages.inspect
-          end 
-        end 
-      else 
           @user = User.find_by(email: params[:email])
           if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
@@ -28,10 +11,27 @@ class SessionsController < ApplicationController
           else 
             redirect_to root_path
           end
-      end 
   end 
  
+  def create_by_omni_auth
+      @user = User.oauth_create(auth)
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
+  end 
 
+  # Clean up!
+      # if @user = User.find_by(:email => oauth_email)
+      #   session[:user_id] = @user.id
+      #   redirect_to user_path(@user)
+      # else 
+      #   @user = User.new(:name => oauth_name, :email => oauth_email, :password => SecureRandom.hex)
+      #   if @user.save
+      #     session[:user_id] = @user.id
+      #     redirect_to user_path(@user)
+      #   else   
+      #     raise.user.errors.messages.inspect
+      #   end 
+      # end 
   def destroy
       if session[:user_id].present?
         session.destroy
@@ -39,6 +39,12 @@ class SessionsController < ApplicationController
       else
         redirect_to root_path
       end 
+  end 
+
+private 
+
+  def auth
+    request.env["omniauth.auth"]["info"]
   end 
 
 

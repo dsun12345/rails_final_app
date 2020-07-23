@@ -13,9 +13,11 @@ class ArtworksController < ApplicationController
     end 
 
     def create
-        @artwork = Artwork.new(artwork_params)
-        @artwork.user_id = current_user.id
-        @artwork.museum_id = params[:museum_id]
+        @artwork = current_user.artworks.build(artwork_params)
+        # Made it cleaner
+        # @artwork = Artwork.new(artwork_params)
+        # @artwork.user_id = current_user.id
+        # @artwork.museum_id = params[:museum_id]
         if @artwork.save
             redirect_to museum_path(@artwork.museum_id)
         else
@@ -26,7 +28,6 @@ class ArtworksController < ApplicationController
 
     def show 
         @artwork = Artwork.find_by(id: params[:id])
-        @museum = Museum.find_by(id: params[:museum_id])
         if @artwork
             render :show
         else
